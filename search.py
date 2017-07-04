@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 def get_post_by_hashtag(hashtag):
     url = "https://www.facebook.com/hashtag/%s" % hashtag
-    r = requests.get(url)
+    r = requests.get(url, headers={'User-agent':"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"})
     hashtags = []
     for code in BeautifulSoup(r.content, 'html.parser').findAll('code'):
         for div in BeautifulSoup(str(code.contents).replace('<!--', '').replace('-->', ''), 'html.parser').findAll('div', {'class': 'userContentWrapper'}):
